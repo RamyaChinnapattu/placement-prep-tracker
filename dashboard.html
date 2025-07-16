@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Prep Tracker - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Placement Prep Tracker</h1>
+            <div class="header-controls">
+                <button id="themeToggle" class="theme-toggle">Toggle Theme</button>
+                <button id="logoutBtn" class="logout-btn">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="sidebar">
+        <ul>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#topic-tracker">Topic Tracker</a></li>
+            <li><a href="#mock-interview">Mock Interview</a></li>
+            <li><a href="#planner">Daily Planner</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#analytics">Analytics</a></li>
+            <li><a href="#company-prep">Company Prep</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <!-- Dashboard Overview -->
+        <section id="dashboard" class="section">
+            <h2>Dashboard Overview</h2>
+            <div class="progress-overview">
+                <div class="progress-card">
+                    <h3>Overall Progress</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="overallProgress"></div>
+                    </div>
+                    <span id="overallProgressText">0%</span>
+                </div>
+                
+                <div class="daily-goals">
+                    <h3>Daily Goals</h3>
+                    <div id="dailyGoalsList">
+                        <div class="goal-item">
+                            <input type="checkbox" id="goal1">
+                            <label for="goal1">Solve 3 DSA problems</label>
+                        </div>
+                        <div class="goal-item">
+                            <input type="checkbox" id="goal2">
+                            <label for="goal2">Read 1 CS concept</label>
+                        </div>
+                    </div>
+                    <button onclick="addDailyGoal()">Add Goal</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Topic Tracker -->
+        <section id="topic-tracker" class="section">
+            <h2>Topic Tracker</h2>
+            
+            <div class="topic-section">
+                <h3>Data Structures & Algorithms</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="dsaProgress"></div>
+                </div>
+                <span id="dsaProgressText">0/10 completed</span>
+                <div class="topic-list" id="dsaTopics">
+                    <div class="topic-item">
+                        <span>Arrays & Strings</span>
+                        <div class="topic-status">
+                            <button class="status-btn not-started" onclick="updateTopicStatus(this, 'dsa', 'arrays')">Not Started</button>
+                        </div>
+                    </div>
+                    <div class="topic-item">
+                        <span>Linked Lists</span>
+                        <div class="topic-status">
+                            <button class="status-btn not-started" onclick="updateTopicStatus(this, 'dsa', 'linkedlists')">Not Started</button>
+                        </div>
+                    </div>
+                    <div class="topic-item">
+                        <span>Binary Trees</span>
+                        <div class="topic-status">
+                            <button class="status-btn not-started" onclick="updateTopicStatus(this, 'dsa', 'trees')">Not Started</button>
+                        </div>
+                    </div>
+                    <div class="topic-item">
+                        <span>Graphs</span>
+                        <div class="topic-status">
+                            <button class="status-btn not-started" onclick="updateTopicStatus(this, 'dsa', 'graphs')">Not Started</button>
+                        </div>
+                    </div>
+                    <div class="topic-item">
+                        <span>Dynamic Programming</span>
+                        <div class="topic-status">
+                            <button class="status-btn not-started" onclick="updateTopicStatus(this, 'dsa', 'dp')">Not Started</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic-section">
+                <h3>Quantitative Aptitude</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="aptitudeProgress"></div>
+                </div>
+                <span id="aptitudeProgressText">0/5 completed</span>
+                <div class="topic-list" id="aptitudeTopics">
+                    <div class="topic-item">
+                        <span>Arithmetic Reasoning</span>
+                        <div class="topic-status">
+                            <button class="status-btn not-started" onclick="updateTopicStatus(this, 'aptitude', 'arithmetic')">Not Started</button>
+                        </div>
+                    </div>
+                    <div class="topic-item">
+                        <span>Algebra</span>
+                        <div class="topic-status">
+                            <button class="status-btn not-started" onclick="updateTopicStatus(this, 'aptitude', 'algebra')">Not Started</button>
+                        </div>
+                    </div>
+                    <div class="topic-item">
+                        <span>Probability</span>
+                        <div class="topic-status">
+                            <button class="status-btn not-started" onclick="updateTopicStatus(this, 'aptitude', 'probability')">Not Started</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic-section">
+                <h3>Computer Science Fundamentals</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="csProgress"></div>
+                </div>
+                <span id="csProgressText">0/4 completed</span>
+                <div class="topic-list" id="csTopics">
+                    <div class="topic-item">
+                        <span>Operating Systems</span>
+                        <div class="topic-status">
+                            <button class="status-btn not-started" onclick="updateTopicStatus(this, 'cs', 'os')">Not Started</button>
+                        </div>
+                    </div>
+                    <div class="topic-item">
+                        <span>Database Management</span>
+                        <div class="topic-status">
+                            <button class="status-btn not-started" onclick="updateTopicStatus(this, 'cs', 'dbms')">Not Started</button>
+                        </div>
+                    </div>
+                    <div class="topic-item">
+                        <span>Computer Networks</span>
+                        <div class="topic-status">
+                            <button class="status-btn not-started" onclick="updateTopicStatus(this, 'cs', 'cn')">Not Started</button>
+                        </div>
+                    </div>
+                    <div class="topic-item">
+                        <span>Object Oriented Programming</span>
+                        <div class="topic-status">
+                            <button class="status-btn not-started" onclick="updateTopicStatus(this, 'cs', 'oop')">Not Started</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mock Interview & Resume -->
+        <section id="mock-interview" class="section">
+            <h2>Mock Interview & Resume</h2>
+            <div class="interview-section">
+                <div class="resume-upload">
+                    <h3>Resume Upload</h3>
+                    <input type="file" id="resumeFile" accept=".pdf,.doc,.docx">
+                    <button onclick="uploadResume()">Upload Resume</button>
+                    <div id="resumeStatus"></div>
+                </div>
+                
+                <div class="interview-scheduler">
+                    <h3>Schedule Mock Interview</h3>
+                    <input type="date" id="interviewDate">
+                    <input type="time" id="interviewTime">
+                    <select id="interviewType">
+                        <option value="self">Self Practice</option>
+                        <option value="peer">Peer Interview</option>
+                    </select>
+                    <button onclick="scheduleInterview()">Schedule</button>
+                    <div id="interviewList"></div>
+                </div>
+                
+                <div class="feedback-notes">
+                    <h3>Interview Feedback</h3>
+                    <textarea id="feedbackText" placeholder="Add your feedback and notes here..."></textarea>
+                    <button onclick="saveFeedback()">Save Notes</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Daily Planner -->
+        <section id="planner" class="section">
+            <h2>Daily/Weekly Planner</h2>
+            <div class="planner-section">
+                <div class="goal-form">
+                    <h3>Set New Goal</h3>
+                    <input type="text" id="goalInput" placeholder="Enter your goal...">
+                    <select id="goalType">
+                        <option value="daily">Daily Goal</option>
+                        <option value="weekly">Weekly Goal</option>
+                    </select>
+                    <button onclick="addGoal()">Add Goal</button>
+                </div>
+                
+                <div class="goals-list">
+                    <h3>Your Goals</h3>
+                    <div id="goalsContainer"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources -->
+        <section id="resources" class="section">
+            <h2>Resource Organizer</h2>
+            <div class="resource-section">
+                <div class="resource-form">
+                    <h3>Add Resource</h3>
+                    <input type="text" id="resourceTitle" placeholder="Resource title">
+                    <input type="url" id="resourceUrl" placeholder="URL">
+                    <select id="resourceType">
+                        <option value="youtube">YouTube</option>
+                        <option value="pdf">PDF</option>
+                        <option value="website">Website</option>
+                        <option value="playlist">Playlist</option>
+                    </select>
+                    <select id="resourceTopic">
+                        <option value="dsa">DSA</option>
+                        <option value="aptitude">Aptitude</option>
+                        <option value="cs">CS Fundamentals</option>
+                        <option value="hr">HR Prep</option>
+                    </select>
+                    <button onclick="addResource()">Add Resource</button>
+                </div>
+                
+                <div class="resources-list">
+                    <h3>Your Resources</h3>
+                    <div id="resourcesContainer"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analytics -->
+        <section id="analytics" class="section">
+            <h2>Progress Analytics</h2>
+            <div class="analytics-section">
+                <div class="chart-container">
+                    <h3>Topics Completed</h3>
+                    <div class="chart" id="topicsChart">
+                        <div class="chart-bar" style="height: 0%" data-topic="dsa">DSA</div>
+                        <div class="chart-bar" style="height: 0%" data-topic="aptitude">Aptitude</div>
+                        <div class="chart-bar" style="height: 0%" data-topic="cs">CS</div>
+                    </div>
+                </div>
+                
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <h4>Consistency Streak</h4>
+                        <span id="streakCount">0 days</span>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Total Topics</h4>
+                        <span id="totalTopics">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Completed Topics</h4>
+                        <span id="completedTopics">0</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Company Preparation -->
+        <section id="company-prep" class="section">
+            <h2>Company-Wise Preparation</h2>
+            <div class="company-section">
+                <div class="company-form">
+                    <h3>Add Company Focus</h3>
+                    <input type="text" id="companyName" placeholder="Company name">
+                    <input type="text" id="companyFocus" placeholder="Focus areas (comma separated)">
+                    <button onclick="addCompany()">Add Company</button>
+                </div>
+                
+                <div class="companies-list">
+                    <h3>Your Companies</h3>
+                    <div id="companiesContainer"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Stay consistent, stay motivated! 🚀 Your dream job awaits.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
